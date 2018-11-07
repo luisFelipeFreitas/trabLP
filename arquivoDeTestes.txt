@@ -6,16 +6,21 @@ resultado: O programa retornará "B", pois vai fazer uma transição de "A" para
 Segundo teste:
 (evaluate (parser "a;c") "A")
 
-resultado: O programa retornará "#t"(true). O programa tem uma execução que passa por todos os nós do gráfo e não tenta fazer uma transição inválida
+resultado: O programa retornará "B". O programa tem uma execução que passa por todos os nós do gráfo e não tenta fazer uma transição inválida, porém não passa por todas as arestas e por isso retorna o último nó visitado
 
 Terceiro teste:
-(evaluate (parser "aUa;c") "A")
+(evaluate (parser "c;a;c;c;c;b") "A")
 
-resultado: O programa retornará "#t". Como a escolha não deterministica (U) encontra um caminho válido que passa por todos os nós.
+resultado: O programa retornará "#t". Dessa vez o programa passa por todos os nós e arestas. Por isso retorna o resultado "true" dizendo que o grafo é induzido pelo programa.
 
 Quarto teste: 
-(evaluate (parser "z*") "A") 
 
-resultado: O programa retornará "A". Pois, apesar de 0 ser uma quantidade válidade de vezes para fazer aquela transição, ele não passa por todos os vértices.
+(evaluate (parser "c*;a*;c*;b") "A") 
+
+resultado: O programa retornará "#t". Esse teste é feito para mostrar que repetição está funcionando.
+
+Quinto Teste:
 
 
+(evaluate (parser "c*;a*;c*;bUc;a;c;c;b") "A")
+Resultado: O programa retornará "#t". Esse teste é feito para mostrar que escolha não deterministica está funcionando e tem a menor prioridade entre as operações
