@@ -59,12 +59,7 @@
 ;; dentro de cada match, todo let deve virar um let-values
 ;; para pegar a lista de mundos e de arestas
 ;; ai vai retornar as duas(talvez concatenando)
-;; Esse é o roteiro final, o racket contra-ataca
-;; não existe tentativa, faça ou não-faça(sua nota depende disso
-;; então faça)
 
-;; tudo é possivel, o impossivel só demora mais tempo ou é mais caro
-;; exceto o problema da parada.
 
 (define (graph-walker world pdl graph)
   (match pdl
@@ -130,9 +125,9 @@
     (let ([l (cons world l)])
       (if
        (and
-        (sublist (graph-vertices graph) (remove-duplicates l)) ;andei por todos os vertices?
-        (not (null? (next-world* world pdl graph))) ;deu errado o pdl???
-        (sublist (graph-arestas graph) (remove-duplicates k))) ; andei por todas as arestas?
+        (sublist (graph-vertices graph) (remove-duplicates l)) ;verifica se todos os vertices foram percorridos
+        (not (null? (next-world* world pdl graph))) ;verifica se next world tem algo dentro, caso nao tenha, eh uma transicao impossivel
+        (sublist (graph-arestas graph) (remove-duplicates k))) ;verifica se todas as arestas foram percorridas
        #t
        (last l)))))
 
