@@ -1,12 +1,12 @@
 Primeiro teste:
 (evaluate (parser "a") "A")
 
-resultado: O programa retornará "B", pois vai fazer uma transição de "A" para "B", mas como não passou por todos os nós o resultado deve ser o último nó por onde passou.
+resultado: O programa retornará "B", pois vai fazer uma transição de "A" para "B", mas como não passou por todos os nós o resultado deve, ser o último nó por onde passou.
 
 Segundo teste:
 (evaluate (parser "a;c") "A")
 
-resultado: O programa retornará "B". O programa tem uma execução que passa por todos os nós do gráfo e não tenta fazer uma transição inválida, porém não passa por todas as arestas e por isso retorna o último nó visitado
+resultado: O programa retornará "C". O programa tem uma execução que passa por todos os nós do gráfo e não tenta fazer uma transição inválida, porém não passa por todas as arestas e por isso retorna o último nó visitado
 
 Terceiro teste:
 (evaluate (parser "c;a;c;c;c;b") "A")
