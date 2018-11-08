@@ -10,6 +10,14 @@
 (define test-graph (graph-struct (list (edge (node "A") (node "B") "a") (edge (node "A") (node "A") "c")
                                        (edge (node "C") (node "B") "c") (edge (node "B") (node "C") "c")
                                        (edge (node "C") (node "A") "b"))))
+                                       
+(define test-graph-b (graph-struct (list (edge (node "A") (node "B") "b") (edge (node "A") (node "C") "c")
+                                         (edge (node "A") (node "D") "d") (edge (node "B") (node "D") "a")
+                                         (edge (node "C") (node "D") "a"))))
+                                         
+(define test-graph-c (graph-struct (list (edge (node "A") (node "B") "b") (edge (node "B") (node "A") "b")
+                                         (edge (node "A") (node "C") "a") (edge (node "C") (node "A") "a")
+                                         (edge (node "B") (node "D") "c") (edge (node "D") (node "E") "c"))))
 
 (define (next-world world atomic graph [lst '()])
   (if (null? (graph-struct-l graph))
