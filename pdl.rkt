@@ -8,15 +8,17 @@
 (struct atomic (a) #:transparent);
 
 (define (parser str)
-  (peg pdl str));
+  (peg top str));
 
 
 _ < [ \t\n]*;
 EOI < ! . ;
-pdl <- _ v:(non-deterministic) _ EOI -> v;
+top <- _ v:pdl _ EOI -> v; 
+pdl <- _ v:(non-deterministic) _ -> v;
 non-deterministic <- v1:(seq) _ v2:((~'U' _ seq _)*) -> (foldl (lambda (a b) (non-deterministic-choice b a)) v1 v2) ;
 seq <- v1:(repetition) _ v2:((~[;] _ repetition)*) -> (foldl (lambda (a b) (seq b a)) v1 v2) ;
-repetition <- v:(atomic) _ a:('*'?) _ -> (if (not (null? a)) (repetition v) v);
+repetition <- v:(base) _ a:('*'?) _ -> (if (not (null? a)) (repetition v) v);
+base <- _ ~'(' _ v2:(pdl) _ ~')' _ / _ v1:(atomic) _ -> (or v1 v2);
 atomic <- v:[a-zA-Z] -> (atomic v);
 
 
