@@ -29,3 +29,11 @@ a estrutura de edge e (edge (node "noOrigem") (node "noDestino) "labelDaAresta")
 
 remova ou inclua da maneira desejada
 
+##NOTAS:
+Caso não consiga instalar o pacote, desinstale o pacote de PEG que está utilizando e utilize o comando Raco novamente.
+
+Caso queira utilizar um outro grafo de teste já pronto utilize o comando (evaluate (parser "programa") "mundoOrigem" test-graph-b)
+ou (evaluate (parser "programa") "mundoOrigem" test-graph-c)
+
+ex:(evaluate (parser "b;a") "B" test-graph-b)
+
